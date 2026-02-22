@@ -120,7 +120,9 @@ function ajouterEvenementsBoutons() {
         bouton.addEventListener('click', function (event) {
             // event.target est le bouton cliqué. getAttribute permet de lire notre 'data-id'
             const projetId = event.target.getAttribute('data-id');
-            alert(`Simulation : Vous allez investir dans le projet numéro ${projetId} ! \n\n (La vraie logique d'investissement blockchain viendra plus tard).`);
+            const projet = projetsAgricoles.find(p => p.id == projetId);
+
+            montrerNotification(`🚜 <b>Action Simulée</b><br>Ouverture de l'investissement pour :<br><b>${projet.titre}</b> !`, 'info');
         });
     });
 }
@@ -129,8 +131,29 @@ function ajouterEvenementsBoutons() {
 const btnConnect = document.querySelector('.btn-connect');
 btnConnect.addEventListener('click', function (e) {
     e.preventDefault(); // Empêche le lien de nous ramener en haut de la page
-    alert("Simulation : Connexion au Wallet (ex: MetaMask) en cours...");
+    montrerNotification("🦊 <b>Action Simulée</b><br>Connexion au Wallet (ex: MetaMask) en cours...", "info");
 });
+
+// ==== SYSTÈME DE NOTIFICATION ====
+function montrerNotification(message, type = 'info') {
+    const container = document.getElementById('notification-container');
+    const notif = document.createElement('div');
+    notif.className = `notification ${type}`;
+    notif.innerHTML = message;
+
+    container.appendChild(notif);
+
+    // Afficher avec une petite animation
+    setTimeout(() => {
+        notif.classList.add('show');
+    }, 10);
+
+    // Disparaître après 4 secondes
+    setTimeout(() => {
+        notif.classList.remove('show');
+        setTimeout(() => notif.remove(), 300); // Attendre la fin de l'animation CSS
+    }, 4000);
+}
 
 // ==== DEMARRAGE ====
 // Quand le navigateur a fini de lire tout le HTML, on lance notre fonction d'affichage
