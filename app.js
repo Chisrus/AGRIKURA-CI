@@ -11,8 +11,8 @@ const projetsAgricoles = [
         humidite: 65,
         temperature: 28,
         rendementEstime: 12.5,
-        montantCible: 5000000, // 5 millions FCFA
-        financementActuel: 60,
+        montantDuBesoin: 5000000, // 5 millions FCFA
+        financementActuel: 3000000,
         couleurTag: "#8b5a2b", // Marron Cacao
         image: "https://www.terre-de-culture.com/storage/2021/05/culture-du-cacao.jpg"
     },
@@ -24,8 +24,8 @@ const projetsAgricoles = [
         humidite: 50,
         temperature: 30,
         rendementEstime: 15.0,
-        montantCible: 2500000,
-        financementActuel: 85,
+        montantDuBesoin: 2500000,
+        financementActuel: 1500000,
         couleurTag: "#d2b48c", // Beige/Marron clair
         image: "https://tse3.mm.bing.net/th/id/OIP.gAxwvHfjb4E7YNfu6-lCXAHaEH?rs=1&pid=ImgDetMain&o=7&rm=3"
     },
@@ -37,8 +37,8 @@ const projetsAgricoles = [
         humidite: 70,
         temperature: 25,
         rendementEstime: 18.2,
-        montantCible: 1200000,
-        financementActuel: 30,
+        montantDuBesoin: 1200000,
+        financementActuel: 400000,
         couleurTag: "#ff0000", // Rouge Tomate
         image: "https://www.agri-mag.com/wp-content/uploads/2022/02/DSC_0203-scaled.jpg"
     },
@@ -50,8 +50,8 @@ const projetsAgricoles = [
         humidite: 45,
         temperature: 35,
         rendementEstime: 22.0,
-        montantCible: 800000,
-        financementActuel: 15,
+        montantDuBesoin: 800000,
+        financementActuel: 150000,
         couleurTag: "#cc0000", // Rouge foncé
         image: "https://tse4.mm.bing.net/th/id/OIP._1Pv_sJZFsVCD21hU9aLpQHaHa?w=1200&h=1200&rs=1&pid=ImgDetMain&o=7&rm=3"
     }
@@ -71,7 +71,7 @@ function creerCarteProjet(projet) {
             <!-- On affiche l'image fournie avec un centrage automatique -->
             <div class="card-image" style="background-image: url('${projet.image}'); background-size: cover; background-position: center;"></div>
             <div class="card-content">
-                <span class="tag" style="color: ${projet.couleurTag}; background-color: ${projet.couleurTag}22;">${projet.culture}</span>
+                <span class="tag" style="color: #ffffff; background-color: ${projet.couleurTag}; padding: 0.4rem 0.8rem; border-radius: 20px;">${projet.culture}</span>
                 <h3>${projet.titre}</h3>
                 <p class="location">📍 ${projet.localisation}</p>
                 
@@ -82,8 +82,8 @@ function creerCarteProjet(projet) {
 
                 <div class="investment-info">
                     <div>
-                        <span class="label">Montant Cible</span>
-                        <span class="value">${projet.montantCible.toLocaleString('fr-FR')} FCFA</span>
+                        <span class="label">Montant du Besoin</span>
+                        <span class="value">${projet.montantDuBesoin.toLocaleString('fr-FR')} FCFA</span>
                     </div>
                 </div>
 
@@ -93,8 +93,8 @@ function creerCarteProjet(projet) {
                         <span class="value highlight">${projet.rendementEstime}%</span>
                     </div>
                     <div>
-                        <span class="label">Financement</span>
-                        <span class="value">${projet.financementActuel}%</span>
+                        <span class="label">Déjà Financé</span>
+                        <span class="value" style="color: var(--primary-color);">${projet.financementActuel.toLocaleString('fr-FR')} FCFA</span>
                     </div>
                 </div>
 

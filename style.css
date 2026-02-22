@@ -153,7 +153,7 @@ body {
 
 .hero-content p {
     font-size: 1.2rem;
-    color: #8b949e;
+    color: #b3bac2;
     max-width: 600px;
     margin: 0 auto 2.5rem auto;
     /* Centre le paragraphe */
@@ -175,7 +175,7 @@ body {
 }
 
 .section-header p {
-    color: #8b949e;
+    color: #b3bac2;
 }
 
 .projects-grid {
@@ -227,7 +227,7 @@ body {
 
 .location {
     font-size: 0.9rem;
-    color: #8b949e;
+    color: #b3bac2;
     margin-bottom: 1.5rem;
 }
 
@@ -261,7 +261,7 @@ body {
 .investment-info .label {
     display: block;
     font-size: 0.8rem;
-    color: #8b949e;
+    color: #b3bac2;
 }
 
 .investment-info .value {
@@ -343,7 +343,7 @@ body {
 }
 
 .step p {
-    color: #8b949e;
+    color: #b3bac2;
     font-size: 0.95rem;
 }
 
@@ -482,7 +482,7 @@ body {
     right: 20px;
     background: transparent;
     border: none;
-    color: #8b949e;
+    color: #b3bac2;
     font-size: 1.5rem;
     cursor: pointer;
     transition: color 0.3s ease;
@@ -499,7 +499,7 @@ body {
 }
 
 .modal-subtitle {
-    color: #8b949e;
+    color: #b3bac2;
     margin-bottom: 2rem;
     font-size: 0.95rem;
 }
@@ -576,7 +576,7 @@ body {
 
 .investment-amount small {
     display: block;
-    color: #8b949e;
+    color: #b3bac2;
     margin-top: 0.5rem;
 }
 
