@@ -282,20 +282,19 @@ body {
     width: 100%;
     /* Prend toute la largeur de la carte */
     padding: 0.8rem;
-    background: transparent;
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
+    background: var(--gradient-sol);
+    border: none;
+    color: white;
     border-radius: 8px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .btn-invest:hover {
-    background: var(--gradient-sol);
-    color: white;
-    border-color: transparent;
-    box-shadow: 0 0 20px rgba(153, 69, 255, 0.4);
+    box-shadow: 0 0 25px rgba(153, 69, 255, 0.5), 0 0 40px rgba(20, 241, 149, 0.3);
+    transform: translateY(-3px);
 }
 
 /* ==== SECTION LE CONCEPT ==== */
