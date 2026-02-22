@@ -436,3 +436,152 @@ body {
         /* Boutons l'un en dessous de l'autre */
     }
 }
+
+/* ==== MODALE D'INVESTISSEMENT ==== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: #161b22;
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 2.5rem;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    transform: translateY(-50px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: #8b949e;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: var(--text-color);
+}
+
+#modal-project-title {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.modal-subtitle {
+    color: #8b949e;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+/* Options de Paiement Mobile Money */
+.payment-methods {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.payment-option img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.payment-option span {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Cacher le bouton radio natif */
+.payment-option input[type="radio"] {
+    display: none;
+}
+
+/* Style appliqué quand l'option est sélectionnée */
+.payment-option:has(input[type="radio"]:checked) {
+    border-color: var(--primary-color);
+    background: rgba(46, 160, 67, 0.1);
+}
+
+/* Montant */
+.investment-amount {
+    margin-bottom: 2rem;
+}
+
+.investment-amount label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.investment-amount input {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: white;
+    font-size: 1.1rem;
+    font-family: 'Outfit';
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.investment-amount input:focus {
+    border-color: var(--primary-color);
+}
+
+.investment-amount small {
+    display: block;
+    color: #8b949e;
+    margin-top: 0.5rem;
+}
+
+#btn-confirm-invest {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
