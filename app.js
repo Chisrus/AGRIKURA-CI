@@ -130,12 +130,15 @@ function creerCarteProjet(projet) {
                     <div class="sensor">Temp. : ${projet.temperature}°C</div>
                 </div>
 
-                <div class="risk-analysis" style="border-left: 3px solid ${analyserRisque(projet).couleur}; padding: 0.6rem 0.8rem; margin-bottom: 1rem; background: ${analyserRisque(projet).couleur}15; border-radius: 0 6px 6px 0;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
-                        <span style="font-weight: 700; color: ${analyserRisque(projet).couleur};">Analyse Risque : ${analyserRisque(projet).niveau}</span>
-                        <span style="font-size: 0.8rem; color: ${analyserRisque(projet).couleur};">${analyserRisque(projet).score}/100</span>
-                    </div>
-                    <small style="color: #b3bac2; font-size: 0.78rem;">${analyserRisque(projet).details}</small>
+                <button class="btn-risk-toggle" data-risk-id="${projet.id}" style="background: transparent; border: 1px solid ${analyserRisque(projet).couleur}; color: ${analyserRisque(projet).couleur}; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; font-family: 'Outfit'; font-size: 0.85rem; width: 100%; margin-bottom: 0.8rem; transition: all 0.2s ease;">
+                    Analyse Risque : ${analyserRisque(projet).niveau} (${analyserRisque(projet).score}/100) ▼
+                </button>
+                <div class="risk-details" id="risk-details-${projet.id}" style="display: none; border-left: 3px solid ${analyserRisque(projet).couleur}; padding: 0.8rem; margin-bottom: 1rem; background: ${analyserRisque(projet).couleur}15; border-radius: 0 8px 8px 0;">
+                    <p style="font-weight: 700; color: ${analyserRisque(projet).couleur}; margin-bottom: 0.5rem; font-size: 0.9rem;">Score : ${analyserRisque(projet).score}/100</p>
+                    <p style="color: #e6edf3; font-size: 0.82rem; margin-bottom: 0.4rem;"><b>Culture :</b> ${projet.culture}</p>
+                    <p style="color: #e6edf3; font-size: 0.82rem; margin-bottom: 0.4rem;"><b>Humidité mesurée :</b> ${projet.humidite}% (idéal : ${conditionsIdeales[projet.culture].humiditeMin}-${conditionsIdeales[projet.culture].humiditeMax}%)</p>
+                    <p style="color: #e6edf3; font-size: 0.82rem; margin-bottom: 0.4rem;"><b>Température mesurée :</b> ${projet.temperature}°C (idéal : ${conditionsIdeales[projet.culture].tempMin}-${conditionsIdeales[projet.culture].tempMax}°C)</p>
+                    <p style="color: #b3bac2; font-size: 0.78rem; margin-top: 0.5rem;"><b>Diagnostic :</b> ${analyserRisque(projet).details}</p>
                 </div>
 
                 <div class="investment-info">
@@ -187,12 +190,25 @@ function ajouterEvenementsBoutons() {
 
     boutons.forEach(bouton => {
         bouton.addEventListener('click', function (event) {
-            // event.target est le bouton cliqué. getAttribute permet de lire notre 'data-id'
             const projetId = event.target.getAttribute('data-id');
             const projet = projetsAgricoles.find(p => p.id == projetId);
-
-            // Ouvrir la modale au lieu d'afficher une notification
             ouvrirModaleInvestissement(projet);
+        });
+    });
+
+    // Toggle pour les boutons d'analyse de risque
+    const boutonsRisque = document.querySelectorAll('.btn-risk-toggle');
+    boutonsRisque.forEach(btn => {
+        btn.addEventListener('click', function () {
+            const riskId = this.getAttribute('data-risk-id');
+            const panel = document.getElementById('risk-details-' + riskId);
+            if (panel.style.display === 'none') {
+                panel.style.display = 'block';
+                this.textContent = this.textContent.replace('▼', '▲');
+            } else {
+                panel.style.display = 'none';
+                this.textContent = this.textContent.replace('▲', '▼');
+            }
         });
     });
 }
