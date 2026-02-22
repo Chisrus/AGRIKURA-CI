@@ -5,47 +5,47 @@
 const projetsAgricoles = [
     {
         id: 1,
-        titre: "Domaine Solaire de Yamoussoukro",
+        titre: "Champ de Cacao",
         culture: "Cacao",
-        localisation: "Yamoussoukro, Côte d'Ivoire",
+        localisation: "Soubré, Côte d'Ivoire", // J'ai mis Soubré, grande zone de cacao
         humidite: 65,
         temperature: 28,
         rendementEstime: 12.5,
         financementActuel: 60,
-        couleurTag: "#2ea043" // Vert
+        couleurTag: "#8b5a2b" // Marron Cacao
     },
     {
         id: 2,
-        titre: "Plantation Connectée",
-        culture: "Hévéa",
-        localisation: "San-Pédro, Côte d'Ivoire",
-        humidite: 72,
-        temperature: 26,
-        rendementEstime: 14.0,
+        titre: "Culture d'Igname",
+        culture: "Igname",
+        localisation: "Bouaké, Côte d'Ivoire",
+        humidite: 50,
+        temperature: 30,
+        rendementEstime: 15.0,
         financementActuel: 85,
-        couleurTag: "#1f6feb" // Bleu
+        couleurTag: "#d2b48c" // Beige/Marron clair
     },
     {
         id: 3,
-        titre: "Coopérative Innovante",
-        culture: "Anacarde",
-        localisation: "Korhogo, Côte d'Ivoire",
-        humidite: 45,
-        temperature: 32,
-        rendementEstime: 10.8,
+        titre: "Plantation de Tomate",
+        culture: "Tomate",
+        localisation: "Sikensi, Côte d'Ivoire",
+        humidite: 70,
+        temperature: 25,
+        rendementEstime: 18.2,
         financementActuel: 30,
-        couleurTag: "#f85149" // Rouge
+        couleurTag: "#ff0000" // Rouge Tomate
     },
     {
         id: 4,
-        titre: "Ferme Hydroponique Urbaine",
-        culture: "Légumes",
-        localisation: "Abidjan, Côte d'Ivoire",
-        humidite: 80,
-        temperature: 22,
-        rendementEstime: 15.2,
-        financementActuel: 10,
-        couleurTag: "#d29922" // Jaune/Orange
+        titre: "Champ de Piment",
+        culture: "Piment",
+        localisation: "Korhogo, Côte d'Ivoire",
+        humidite: 45,
+        temperature: 35,
+        rendementEstime: 22.0,
+        financementActuel: 15,
+        couleurTag: "#cc0000" // Rouge foncé
     }
 ];
 
@@ -111,9 +111,9 @@ function afficherProjets() {
 // Fonction pour gérer les clics sur les boutons "Investir"
 function ajouterEvenementsBoutons() {
     const boutons = document.querySelectorAll('.btn-invest');
-    
+
     boutons.forEach(bouton => {
-        bouton.addEventListener('click', function(event) {
+        bouton.addEventListener('click', function (event) {
             // event.target est le bouton cliqué. getAttribute permet de lire notre 'data-id'
             const projetId = event.target.getAttribute('data-id');
             alert(`Simulation : Vous allez investir dans le projet numéro ${projetId} ! \n\n (La vraie logique d'investissement blockchain viendra plus tard).`);
@@ -123,7 +123,7 @@ function ajouterEvenementsBoutons() {
 
 // Fonction pour le bouton "Connecter Wallet" dans la barre de navigation
 const btnConnect = document.querySelector('.btn-connect');
-btnConnect.addEventListener('click', function(e) {
+btnConnect.addEventListener('click', function (e) {
     e.preventDefault(); // Empêche le lien de nous ramener en haut de la page
     alert("Simulation : Connexion au Wallet (ex: MetaMask) en cours...");
 });
