@@ -504,7 +504,10 @@ body {
 
 #modal-project-title {
     font-size: 1.5rem;
-    color: var(--primary-color);
+    background: var(--gradient-sol);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 0.5rem;
 }
 
@@ -553,7 +556,8 @@ body {
 /* Style appliqué quand l'option est sélectionnée */
 .payment-option:has(input[type="radio"]:checked) {
     border-color: var(--primary-color);
-    background: rgba(46, 160, 67, 0.1);
+    background: rgba(153, 69, 255, 0.1);
+    box-shadow: 0 0 10px rgba(153, 69, 255, 0.2);
 }
 
 /* Montant */
@@ -582,6 +586,7 @@ body {
 
 .investment-amount input:focus {
     border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(153, 69, 255, 0.2);
 }
 
 .investment-amount small {
