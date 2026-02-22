@@ -133,10 +133,61 @@ function ajouterEvenementsBoutons() {
             const projetId = event.target.getAttribute('data-id');
             const projet = projetsAgricoles.find(p => p.id == projetId);
 
-            montrerNotification(`🚜 <b>Action Simulée</b><br>Ouverture de l'investissement pour :<br><b>${projet.titre}</b> !`, 'info');
+            // Ouvrir la modale au lieu d'afficher une notification
+            ouvrirModaleInvestissement(projet);
         });
     });
 }
+
+// ==== GESTION DE LA MODALE ====
+const modal = document.getElementById('invest-modal');
+const modalTitle = document.getElementById('modal-project-title');
+const btnCloseModal = document.querySelector('.close-modal');
+const btnConfirmInvest = document.getElementById('btn-confirm-invest');
+const amountInput = document.getElementById('amount');
+
+// Pour garder en mémoire le projet en cours d'investissement
+let projetActuelSelectionne = null;
+
+function ouvrirModaleInvestissement(projet) {
+    projetActuelSelectionne = projet;
+    modalTitle.innerHTML = `Investir dans : <br> ${projet.titre}`;
+    amountInput.value = ''; // Réinitialiser le champ
+    modal.classList.add('active');
+}
+
+function fermerModale() {
+    modal.classList.remove('active');
+    projetActuelSelectionne = null;
+}
+
+// Fermer via le bouton X
+btnCloseModal.addEventListener('click', fermerModale);
+
+// Fermer en cliquant à l'extérieur de la Pop-up
+modal.addEventListener('click', function (e) {
+    if (e.target === modal) {
+        fermerModale();
+    }
+});
+
+// Gérer le clic sur "Confirmer le Paiement"
+btnConfirmInvest.addEventListener('click', function () {
+    const montantSaisi = parseInt(amountInput.value);
+
+    // Vérifier quel réseau Mobile Money a été choisi
+    const mobileMoneyChoisi = document.querySelector('input[name="payment"]:checked').value;
+    const nomReseau = mobileMoneyChoisi.charAt(0).toUpperCase() + mobileMoneyChoisi.slice(1); // Mettre la Majuscule
+
+    if (!montantSaisi || montantSaisi < 5000) {
+        montrerNotification("⚠️ <b>Erreur</b><br>Veuillez saisir un montant validé d'au moins 5 000 FCFA.", "info");
+        return;
+    }
+
+    // Si tout va bien, on ferme la modale et on simule un succès !
+    fermerModale();
+    montrerNotification(`✅ <b>Paiement Initié</b><br>Demande d'autorisation de ${montantSaisi.toLocaleString('fr-FR')} FCFA via <b>${nomReseau}</b> envoyée sur votre téléphone.`, "info");
+});
 
 // Fonction pour le bouton "Connecter Wallet" dans la barre de navigation
 const btnConnect = document.querySelector('.btn-connect');
