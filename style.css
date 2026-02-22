@@ -1,18 +1,21 @@
 /* ==== VARIABLES GLOBALES ==== */
-/* On définit nos couleurs principales ici pour les réutiliser facilement */
+/* Palette inspirée de Solana : violet profond, turquoise, vert néon */
 :root {
-    --bg-color: #0d1117;
-    /* Gris très sombre, presqu'au noir (Thème Dark) */
-    --text-color: #f0f6fc;
-    /* Blanc cassé pour le texte */
-    --primary-color: #2ea043;
-    /* Vert "Agriculture" mais vibrant */
-    --primary-hover: #3fb950;
-    --accent-color: #1f6feb;
-    /* Bleu "Tech" pour rappeler la Blockchain */
-    --glass-bg: rgba(22, 27, 34, 0.6);
-    /* Fond semi-transparent pour l'effet "verre" */
-    --glass-border: rgba(240, 246, 252, 0.1);
+    --bg-color: #0e0e1a;
+    /* Fond très sombre avec nuance violette */
+    --text-color: #f0f0f5;
+    /* Blanc légèrement bleu */
+    --primary-color: #9945FF;
+    /* Violet Solana */
+    --primary-hover: #b066ff;
+    --accent-color: #14F195;
+    /* Turquoise/Vert néon Solana */
+    --glass-bg: rgba(20, 15, 40, 0.65);
+    /* Semi-transparent violet foncé */
+    --glass-border: rgba(153, 69, 255, 0.2);
+    /* Bordure violette subtile */
+    --gradient-sol: linear-gradient(135deg, #9945FF, #14F195);
+    /* Le fameux dégradé Solana */
 }
 
 /* ==== RESET GLOBAL ==== */
@@ -32,6 +35,10 @@ html {
 
 body {
     background-color: var(--bg-color);
+    background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(153, 69, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(20, 241, 149, 0.06) 0%, transparent 50%);
+    background-attachment: fixed;
     color: var(--text-color);
     line-height: 1.6;
     overflow-x: hidden;
@@ -105,8 +112,8 @@ body {
 }
 
 .btn-connect:hover {
-    background: rgba(31, 111, 235, 0.1);
-    box-shadow: 0 0 15px rgba(31, 111, 235, 0.4);
+    background: rgba(20, 241, 149, 0.1);
+    box-shadow: 0 0 15px rgba(20, 241, 149, 0.4);
 }
 
 /* ==== SECTION HERO (Accueil principal) ==== */
@@ -129,13 +136,13 @@ body {
     position: absolute;
     width: 40vw;
     height: 40vw;
-    background: radial-gradient(circle, rgba(46, 160, 67, 0.15) 0%, rgba(13, 17, 23, 0) 70%);
+    background: radial-gradient(circle, rgba(153, 69, 255, 0.2) 0%, rgba(20, 241, 149, 0.05) 40%, rgba(14, 14, 26, 0) 70%);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: -1;
     /* Derrière le texte */
-    filter: blur(50px);
+    filter: blur(60px);
 }
 
 .hero-content h1 {
@@ -146,9 +153,11 @@ body {
 }
 
 .hero-content .highlight {
-    color: var(--primary-color);
-    /* Effet de texte qui brille un peu */
-    text-shadow: 0 0 20px rgba(46, 160, 67, 0.5);
+    background: var(--gradient-sol);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* Texte avec le dégradé Solana */
 }
 
 .hero-content p {
@@ -283,15 +292,17 @@ body {
 }
 
 .btn-invest:hover {
-    background: var(--primary-color);
+    background: var(--gradient-sol);
     color: white;
+    border-color: transparent;
+    box-shadow: 0 0 20px rgba(153, 69, 255, 0.4);
 }
 
 /* ==== SECTION LE CONCEPT ==== */
 .concept-section {
     padding: 5rem 5%;
-    background-color: rgba(22, 27, 34, 0.3);
-    /* Un peu plus sombre que le fond principal */
+    background-color: rgba(20, 15, 40, 0.4);
+    /* Un fond violet foncé très subtil */
     border-top: 1px solid var(--glass-border);
     border-bottom: 1px solid var(--glass-border);
 }
@@ -388,14 +399,13 @@ body {
 }
 
 .btn-primary {
-    background: var(--primary-color);
+    background: var(--gradient-sol);
     color: white;
     border: none;
 }
 
 .btn-primary:hover {
-    background: var(--primary-hover);
-    box-shadow: 0 0 20px rgba(46, 160, 67, 0.6);
+    box-shadow: 0 0 25px rgba(153, 69, 255, 0.5), 0 0 50px rgba(20, 241, 149, 0.2);
     transform: translateY(-2px);
     /* Monte le bouton un peu */
 }
