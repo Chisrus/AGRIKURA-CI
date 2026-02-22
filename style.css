@@ -119,30 +119,30 @@ body {
 /* ==== SECTION HERO (Accueil principal) ==== */
 .hero {
     height: 100vh;
-    /* Prend toute la hauteur de l'écran */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     position: relative;
-    /* Pour positionner l'effet décoratif */
     padding: 0 5%;
     margin-top: 60px;
-    /* Pour ne pas être caché par la navigation */
+    background-image: linear-gradient(rgba(14, 14, 26, 0.85), rgba(14, 14, 26, 0.6)), url('https://blog.rockx.com/wp-content/uploads/2022/11/solana-staking-img-1920x1024.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 /* La décoration brillante derrière le texte */
 .hero-glow {
     position: absolute;
-    width: 40vw;
-    height: 40vw;
-    background: radial-gradient(circle, rgba(153, 69, 255, 0.2) 0%, rgba(20, 241, 149, 0.05) 40%, rgba(14, 14, 26, 0) 70%);
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(153, 69, 255, 0.25) 0%, rgba(20, 241, 149, 0.1) 40%, rgba(14, 14, 26, 0) 70%);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: -1;
-    /* Derrière le texte */
-    filter: blur(60px);
+    filter: blur(80px);
 }
 
 .hero-content h1 {
