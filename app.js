@@ -57,6 +57,56 @@ const projetsAgricoles = [
     }
 ];
 
+// ==== CONDITIONS IDEALES PAR CULTURE ====
+// Ces données représentent les plages optimales d'humidité et de température pour chaque type de culture.
+const conditionsIdeales = {
+    "Cacao": { humiditeMin: 60, humiditeMax: 80, tempMin: 24, tempMax: 30 },
+    "Igname": { humiditeMin: 40, humiditeMax: 60, tempMin: 25, tempMax: 35 },
+    "Tomate": { humiditeMin: 60, humiditeMax: 80, tempMin: 20, tempMax: 28 },
+    "Piment": { humiditeMin: 40, humiditeMax: 70, tempMin: 25, tempMax: 35 }
+};
+
+// ==== FONCTION D'ANALYSE DE RISQUE ====
+// Compare les valeurs des capteurs aux conditions idéales de la culture
+function analyserRisque(projet) {
+    const ideales = conditionsIdeales[projet.culture];
+    if (!ideales) return { niveau: "Inconnu", couleur: "#8b949e", icone: "--", details: "Données insuffisantes" };
+
+    let score = 100; // On part de 100 (parfait) et on enlève des points
+    let problemes = [];
+
+    // Vérification de l'humidité
+    if (projet.humidite < ideales.humiditeMin) {
+        const ecart = ideales.humiditeMin - projet.humidite;
+        score -= ecart * 2;
+        problemes.push(`Humidité trop basse (${projet.humidite}% vs min ${ideales.humiditeMin}%)`);
+    } else if (projet.humidite > ideales.humiditeMax) {
+        const ecart = projet.humidite - ideales.humiditeMax;
+        score -= ecart * 2;
+        problemes.push(`Humidité trop haute (${projet.humidite}% vs max ${ideales.humiditeMax}%)`);
+    }
+
+    // Vérification de la température
+    if (projet.temperature < ideales.tempMin) {
+        const ecart = ideales.tempMin - projet.temperature;
+        score -= ecart * 3;
+        problemes.push(`Température trop basse (${projet.temperature}°C vs min ${ideales.tempMin}°C)`);
+    } else if (projet.temperature > ideales.tempMax) {
+        const ecart = projet.temperature - ideales.tempMax;
+        score -= ecart * 3;
+        problemes.push(`Température trop haute (${projet.temperature}°C vs max ${ideales.tempMax}°C)`);
+    }
+
+    // Classer le risque selon le score
+    if (score >= 80) {
+        return { niveau: "Favorable", couleur: "#2ea043", icone: "", details: "Conditions optimales pour cette culture.", score };
+    } else if (score >= 50) {
+        return { niveau: "Modéré", couleur: "#d29922", icone: "", details: problemes.join(' | '), score };
+    } else {
+        return { niveau: "Risqué", couleur: "#f85149", icone: "", details: problemes.join(' | '), score };
+    }
+}
+
 // ==== LOGIQUE DE L'APPLICATION ====
 
 // Trouver l'endroit où on veut insérer nos cartes dans le HTML
@@ -73,11 +123,19 @@ function creerCarteProjet(projet) {
             <div class="card-content">
                 <span class="tag" style="color: #ffffff; background-color: ${projet.couleurTag}; padding: 0.4rem 0.8rem; border-radius: 20px;">${projet.culture}</span>
                 <h3>${projet.titre}</h3>
-                <p class="location">📍 ${projet.localisation}</p>
+                <p class="location">${projet.localisation}</p>
                 
                 <div class="sensor-data">
-                    <div class="sensor"><span class="icon">💧</span> ${projet.humidite}% Humidité</div>
-                    <div class="sensor"><span class="icon">🌡️</span> ${projet.temperature}°C Temp.</div>
+                    <div class="sensor">Humidité : ${projet.humidite}%</div>
+                    <div class="sensor">Temp. : ${projet.temperature}°C</div>
+                </div>
+
+                <div class="risk-analysis" style="border-left: 3px solid ${analyserRisque(projet).couleur}; padding: 0.6rem 0.8rem; margin-bottom: 1rem; background: ${analyserRisque(projet).couleur}15; border-radius: 0 6px 6px 0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                        <span style="font-weight: 700; color: ${analyserRisque(projet).couleur};">Analyse Risque : ${analyserRisque(projet).niveau}</span>
+                        <span style="font-size: 0.8rem; color: ${analyserRisque(projet).couleur};">${analyserRisque(projet).score}/100</span>
+                    </div>
+                    <small style="color: #b3bac2; font-size: 0.78rem;">${analyserRisque(projet).details}</small>
                 </div>
 
                 <div class="investment-info">
