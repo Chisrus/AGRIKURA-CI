@@ -1,0 +1,331 @@
+/* ==== VARIABLES GLOBALES ==== */
+/* On définit nos couleurs principales ici pour les réutiliser facilement */
+:root {
+    --bg-color: #0d1117;
+    /* Gris très sombre, presqu'au noir (Thème Dark) */
+    --text-color: #f0f6fc;
+    /* Blanc cassé pour le texte */
+    --primary-color: #2ea043;
+    /* Vert "Agriculture" mais vibrant */
+    --primary-hover: #3fb950;
+    --accent-color: #1f6feb;
+    /* Bleu "Tech" pour rappeler la Blockchain */
+    --glass-bg: rgba(22, 27, 34, 0.6);
+    /* Fond semi-transparent pour l'effet "verre" */
+    --glass-border: rgba(240, 246, 252, 0.1);
+}
+
+/* ==== RESET GLOBAL ==== */
+/* On enlève les marges par défaut du navigateur */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+    /* Notre belle police d'écriture */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* Empêche le défilement horizontal */
+}
+
+/* ==== NAVIGATION ==== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background: var(--glass-bg);
+    /* Effet verre */
+    backdrop-filter: blur(10px);
+    /* Floute l'arrière-plan */
+    border-bottom: 1px solid var(--glass-border);
+    position: fixed;
+    /* Reste en haut au défilement */
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    /* Toujours au-dessus du reste */
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.logo .dot {
+    color: var(--primary-color);
+}
+
+.nav-links {
+    list-style: none;
+    /* Enlève les puces de la liste */
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links li a {
+    color: var(--text-color);
+    text-decoration: none;
+    /* Enlève le soulignement */
+    font-weight: 600;
+    transition: color 0.3s ease;
+    /* Animation douce */
+}
+
+.nav-links li a:hover {
+    color: var(--primary-color);
+}
+
+/* Boutons spéciaux */
+.btn-connect,
+.btn-primary,
+.btn-secondary {
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-connect {
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color) !important;
+}
+
+.btn-connect:hover {
+    background: rgba(31, 111, 235, 0.1);
+    box-shadow: 0 0 15px rgba(31, 111, 235, 0.4);
+}
+
+/* ==== SECTION HERO (Accueil principal) ==== */
+.hero {
+    height: 100vh;
+    /* Prend toute la hauteur de l'écran */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    /* Pour positionner l'effet décoratif */
+    padding: 0 5%;
+    margin-top: 60px;
+    /* Pour ne pas être caché par la navigation */
+}
+
+/* La décoration brillante derrière le texte */
+.hero-glow {
+    position: absolute;
+    width: 40vw;
+    height: 40vw;
+    background: radial-gradient(circle, rgba(46, 160, 67, 0.15) 0%, rgba(13, 17, 23, 0) 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    /* Derrière le texte */
+    filter: blur(50px);
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.hero-content .highlight {
+    color: var(--primary-color);
+    /* Effet de texte qui brille un peu */
+    text-shadow: 0 0 20px rgba(46, 160, 67, 0.5);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: #8b949e;
+    max-width: 600px;
+    margin: 0 auto 2.5rem auto;
+    /* Centre le paragraphe */
+}
+
+/* ==== SECTION MARKETPLACE ==== */
+.marketplace {
+    padding: 5rem 5%;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-header p {
+    color: #8b949e;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Design de la Carte */
+.project-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    overflow: hidden;
+    /* Empêche l'image de dépasser des bords arrondis */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-color: var(--primary-color);
+    /* La bordure devient verte au survol */
+}
+
+.card-image {
+    height: 180px;
+    width: 100%;
+    /* On utilisera de vraies images plus tard, en attendant un fond coloré */
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.tag {
+    background: rgba(46, 160, 67, 0.2);
+    color: var(--primary-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.project-card h3 {
+    margin: 1rem 0 0.5rem 0;
+    font-size: 1.3rem;
+}
+
+.location {
+    font-size: 0.9rem;
+    color: #8b949e;
+    margin-bottom: 1.5rem;
+}
+
+/* Données Capteurs */
+.sensor-data {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    /* Fond un peu plus sombre */
+    border-radius: 8px;
+}
+
+.sensor {
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Infos Investissement */
+.investment-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+    padding-top: 1rem;
+}
+
+.investment-info .label {
+    display: block;
+    font-size: 0.8rem;
+    color: #8b949e;
+}
+
+.investment-info .value {
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.btn-invest {
+    width: 100%;
+    /* Prend toute la largeur de la carte */
+    padding: 0.8rem;
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-invest:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    box-shadow: 0 0 20px rgba(46, 160, 67, 0.6);
+    transform: translateY(-2px);
+    /* Monte le bouton un peu */
+}
+
+.btn-secondary {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-color);
+    backdrop-filter: blur(5px);
+}
+
+.btn-secondary:hover {
+    background: rgba(240, 246, 252, 0.1);
+    border-color: rgba(240, 246, 252, 0.3);
+}
+
+/* Responsive pour les petits écrans */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        /* Cache les liens sur mobile pour le moment */
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        /* Boutons l'un en dessous de l'autre */
+    }
+}

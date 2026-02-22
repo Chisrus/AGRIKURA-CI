@@ -1,0 +1,133 @@
+// app.js
+
+// ==== DONNÉES FACTICES (Notre fausse base de données) ====
+// Dans une vraie application, ces données viendraient d'un serveur (Backend) ou de la blockchain.
+const projetsAgricoles = [
+    {
+        id: 1,
+        titre: "Domaine Solaire de Yamoussoukro",
+        culture: "Cacao",
+        localisation: "Yamoussoukro, Côte d'Ivoire",
+        humidite: 65,
+        temperature: 28,
+        rendementEstime: 12.5,
+        financementActuel: 60,
+        couleurTag: "#2ea043" // Vert
+    },
+    {
+        id: 2,
+        titre: "Plantation Connectée",
+        culture: "Hévéa",
+        localisation: "San-Pédro, Côte d'Ivoire",
+        humidite: 72,
+        temperature: 26,
+        rendementEstime: 14.0,
+        financementActuel: 85,
+        couleurTag: "#1f6feb" // Bleu
+    },
+    {
+        id: 3,
+        titre: "Coopérative Innovante",
+        culture: "Anacarde",
+        localisation: "Korhogo, Côte d'Ivoire",
+        humidite: 45,
+        temperature: 32,
+        rendementEstime: 10.8,
+        financementActuel: 30,
+        couleurTag: "#f85149" // Rouge
+    },
+    {
+        id: 4,
+        titre: "Ferme Hydroponique Urbaine",
+        culture: "Légumes",
+        localisation: "Abidjan, Côte d'Ivoire",
+        humidite: 80,
+        temperature: 22,
+        rendementEstime: 15.2,
+        financementActuel: 10,
+        couleurTag: "#d29922" // Jaune/Orange
+    }
+];
+
+// ==== LOGIQUE DE L'APPLICATION ====
+
+// Trouver l'endroit où on veut insérer nos cartes dans le HTML
+const projectsGrid = document.querySelector('.projects-grid');
+
+// Fonction pour générer une carte HTML à partir des données
+function creerCarteProjet(projet) {
+    // On crée une grande chaîne de caractères qui contient le code HTML de la carte
+    // Les backticks (``) permettent d'insérer des variables avec ${variable}
+    const html = `
+        <div class="project-card">
+            <!-- On utilise la couleur du tag avec un peu de transparence (33) pour le fond de l'image -->
+            <div class="card-image" style="background-color: ${projet.couleurTag}33;"></div>
+            <div class="card-content">
+                <span class="tag" style="color: ${projet.couleurTag}; background-color: ${projet.couleurTag}22;">${projet.culture}</span>
+                <h3>${projet.titre}</h3>
+                <p class="location">📍 ${projet.localisation}</p>
+                
+                <div class="sensor-data">
+                    <div class="sensor"><span class="icon">💧</span> ${projet.humidite}% Humidité</div>
+                    <div class="sensor"><span class="icon">🌡️</span> ${projet.temperature}°C Temp.</div>
+                </div>
+
+                <div class="investment-info">
+                    <div>
+                        <span class="label">Rendement Est.</span>
+                        <span class="value highlight">${projet.rendementEstime}%</span>
+                    </div>
+                    <div>
+                        <span class="label">Financement</span>
+                        <span class="value">${projet.financementActuel}%</span>
+                    </div>
+                </div>
+
+                <!-- On ajoute un identifiant unique (data-id) au bouton pour savoir lequel a été cliqué -->
+                <button class="btn-invest" data-id="${projet.id}">Investir Maintenant</button>
+            </div>
+        </div>
+    `;
+    return html;
+}
+
+// Fonction pour afficher toutes les cartes sur la page
+function afficherProjets() {
+    // On vide la grille (qui contient actuellement les cartes HTML statiques)
+    projectsGrid.innerHTML = '';
+
+    // On parcourt notre fausse base de données
+    projetsAgricoles.forEach(projet => {
+        // On crée le HTML pour chaque projet
+        const carteHTML = creerCarteProjet(projet);
+        // On l'ajoute à la grille
+        projectsGrid.innerHTML += carteHTML;
+    });
+
+    // Une fois les boutons créés, on leur ajoute la capacité de réagir au clic
+    ajouterEvenementsBoutons();
+}
+
+// Fonction pour gérer les clics sur les boutons "Investir"
+function ajouterEvenementsBoutons() {
+    const boutons = document.querySelectorAll('.btn-invest');
+    
+    boutons.forEach(bouton => {
+        bouton.addEventListener('click', function(event) {
+            // event.target est le bouton cliqué. getAttribute permet de lire notre 'data-id'
+            const projetId = event.target.getAttribute('data-id');
+            alert(`Simulation : Vous allez investir dans le projet numéro ${projetId} ! \n\n (La vraie logique d'investissement blockchain viendra plus tard).`);
+        });
+    });
+}
+
+// Fonction pour le bouton "Connecter Wallet" dans la barre de navigation
+const btnConnect = document.querySelector('.btn-connect');
+btnConnect.addEventListener('click', function(e) {
+    e.preventDefault(); // Empêche le lien de nous ramener en haut de la page
+    alert("Simulation : Connexion au Wallet (ex: MetaMask) en cours...");
+});
+
+// ==== DEMARRAGE ====
+// Quand le navigateur a fini de lire tout le HTML, on lance notre fonction d'affichage
+document.addEventListener('DOMContentLoaded', afficherProjets);

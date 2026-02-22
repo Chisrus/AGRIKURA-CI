@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agrikura | Investissez dans l'Agriculture Connectée</title>
+    <!-- On relie notre fichier CSS ici -->
+    <link rel="stylesheet" href="style.css">
+    <!-- On importe une belle police d'écriture depuis Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Barre de navigation -->
+    <nav class="navbar">
+        <div class="logo">Agrikura<span class="dot">.</span></div>
+        <ul class="nav-links">
+            <li><a href="#concept">Le Concept</a></li>
+            <li><a href="#marketplace">Marketplace</a></li>
+            <li><a href="#" class="btn-connect">Connecter Wallet</a></li>
+        </ul>
+    </nav>
+
+    <!-- Section Héroïque (La première chose qu'on voit) -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>La Finance Agricole <br><span class="highlight">Réinventée</span>.</h1>
+            <p>Soutenez des projets agricoles réels, suivez les rendements via nos capteurs connectés, et participez à
+                l'agriculture de demain grâce à la blockchain.</p>
+            <div class="hero-buttons">
+                <a href="#marketplace" class="btn-primary">Explorer les Champs</a>
+                <a href="#concept" class="btn-secondary">Découvrir le Concept</a>
+            </div>
+        </div>
+        <!-- Un élément décoratif pour un look "Tech/Agri" -->
+        <div class="hero-glow"></div>
+    </header>
+
+    <!-- Section Marketplace -->
+    <section id="marketplace" class="marketplace">
+        <div class="section-header">
+            <h2>Projets <span class="highlight">Disponibles</span></h2>
+            <p>Découvrez les exploitations agricoles qui n'attendent que votre soutien.</p>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Carte Projet 1 -->
+            <div class="project-card">
+                <div class="card-image" style="background-color: #2ea04333;"></div>
+                <div class="card-content">
+                    <span class="tag">Cacao</span>
+                    <h3>Domaine Solaire de Yamoussoukro</h3>
+                    <p class="location">📍 Yamoussoukro, Côte d'Ivoire</p>
+
+                    <div class="sensor-data">
+                        <div class="sensor"><span class="icon">💧</span> 65% Humidité</div>
+                        <div class="sensor"><span class="icon">🌡️</span> 28°C Temp.</div>
+                    </div>
+
+                    <div class="investment-info">
+                        <div>
+                            <span class="label">Rendement Est.</span>
+                            <span class="value highlight">12.5%</span>
+                        </div>
+                        <div>
+                            <span class="label">Financement</span>
+                            <span class="value">60%</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-invest">Investir Maintenant</button>
+                </div>
+            </div>
+
+            <!-- Carte Projet 2 -->
+            <div class="project-card">
+                <div class="card-image" style="background-color: #1f6feb33;"></div>
+                <div class="card-content">
+                    <span class="tag">Hévéa</span>
+                    <h3>Plantation Connectée San-Pédro</h3>
+                    <p class="location">📍 San-Pédro, Côte d'Ivoire</p>
+
+                    <div class="sensor-data">
+                        <div class="sensor"><span class="icon">💧</span> 72% Humidité</div>
+                        <div class="sensor"><span class="icon">🌡️</span> 26°C Temp.</div>
+                    </div>
+
+                    <div class="investment-info">
+                        <div>
+                            <span class="label">Rendement Est.</span>
+                            <span class="value highlight">14.0%</span>
+                        </div>
+                        <div>
+                            <span class="label">Financement</span>
+                            <span class="value">85%</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-invest">Investir Maintenant</button>
+                </div>
+            </div>
+
+            <!-- Carte Projet 3 -->
+            <div class="project-card">
+                <div class="card-image" style="background-color: #f8514933;"></div>
+                <div class="card-content">
+                    <span class="tag">Anacarde</span>
+                    <h3>Coopérative Innovante Korhogo</h3>
+                    <p class="location">📍 Korhogo, Côte d'Ivoire</p>
+
+                    <div class="sensor-data">
+                        <div class="sensor"><span class="icon">💧</span> 45% Humidité</div>
+                        <div class="sensor"><span class="icon">🌡️</span> 32°C Temp.</div>
+                    </div>
+
+                    <div class="investment-info">
+                        <div>
+                            <span class="label">Rendement Est.</span>
+                            <span class="value highlight">10.8%</span>
+                        </div>
+                        <div>
+                            <span class="label">Financement</span>
+                            <span class="value">30%</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-invest">Investir Maintenant</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- On lie notre fichier JavaScript ici, juste avant la fin du body pour que le HTML charge en premier -->
+    <script src="app.js"></script>
+</body>
+
+</html>
