@@ -12,7 +12,8 @@ const projetsAgricoles = [
         temperature: 28,
         rendementEstime: 12.5,
         financementActuel: 60,
-        couleurTag: "#8b5a2b" // Marron Cacao
+        couleurTag: "#8b5a2b", // Marron Cacao
+        image: "https://www.terre-de-culture.com/storage/2021/05/culture-du-cacao.jpg"
     },
     {
         id: 2,
@@ -23,7 +24,8 @@ const projetsAgricoles = [
         temperature: 30,
         rendementEstime: 15.0,
         financementActuel: 85,
-        couleurTag: "#d2b48c" // Beige/Marron clair
+        couleurTag: "#d2b48c", // Beige/Marron clair
+        image: "https://tse3.mm.bing.net/th/id/OIP.gAxwvHfjb4E7YNfu6-lCXAHaEH?rs=1&pid=ImgDetMain&o=7&rm=3"
     },
     {
         id: 3,
@@ -34,7 +36,8 @@ const projetsAgricoles = [
         temperature: 25,
         rendementEstime: 18.2,
         financementActuel: 30,
-        couleurTag: "#ff0000" // Rouge Tomate
+        couleurTag: "#ff0000", // Rouge Tomate
+        image: "https://www.agri-mag.com/wp-content/uploads/2022/02/DSC_0203-scaled.jpg"
     },
     {
         id: 4,
@@ -45,7 +48,8 @@ const projetsAgricoles = [
         temperature: 35,
         rendementEstime: 22.0,
         financementActuel: 15,
-        couleurTag: "#cc0000" // Rouge foncé
+        couleurTag: "#cc0000", // Rouge foncé
+        image: "https://tse4.mm.bing.net/th/id/OIP._1Pv_sJZFsVCD21hU9aLpQHaHa?w=1200&h=1200&rs=1&pid=ImgDetMain&o=7&rm=3"
     }
 ];
 
@@ -60,8 +64,8 @@ function creerCarteProjet(projet) {
     // Les backticks (``) permettent d'insérer des variables avec ${variable}
     const html = `
         <div class="project-card">
-            <!-- On utilise la couleur du tag avec un peu de transparence (33) pour le fond de l'image -->
-            <div class="card-image" style="background-color: ${projet.couleurTag}33;"></div>
+            <!-- On affiche l'image fournie avec un centrage automatique -->
+            <div class="card-image" style="background-image: url('${projet.image}'); background-size: cover; background-position: center;"></div>
             <div class="card-content">
                 <span class="tag" style="color: ${projet.couleurTag}; background-color: ${projet.couleurTag}22;">${projet.culture}</span>
                 <h3>${projet.titre}</h3>
