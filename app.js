@@ -1,7 +1,7 @@
 // app.js
 
 // ==== DONNÉES FACTICES (Notre fausse base de données) ====
-// Dans une vraie application, ces données viendraient d'un serveur (Backend) ou de la blockchain.
+// Dans une vraie application, ces données viendraient d'un serveur (Backend) ou de notre base de données sécurisée.
 const projetsAgricoles = [
     {
         id: 1,
@@ -263,12 +263,64 @@ btnConfirmInvest.addEventListener('click', function () {
     montrerNotification(`✅ <b>Paiement Initié</b><br>Demande d'autorisation de ${montantSaisi.toLocaleString('fr-FR')} FCFA via <b>${nomReseau}</b> envoyée sur votre téléphone.`, "info");
 });
 
-// Fonction pour le bouton "Connecter Wallet" dans la barre de navigation
+// Fonction pour le bouton "Espace Investisseur" dans la barre de navigation
 const btnConnect = document.querySelector('.btn-connect');
 btnConnect.addEventListener('click', function (e) {
     e.preventDefault(); // Empêche le lien de nous ramener en haut de la page
-    montrerNotification("🦊 <b>Action Simulée</b><br>Connexion au Wallet (ex: MetaMask) en cours...", "info");
+    montrerNotification("🔐 <b>Espace Sécurisé</b><br>Connexion à votre espace investisseur en cours...", "info");
 });
+
+// ==== COMPTEURS ANIMÉS POUR LES STATISTIQUES ====
+function animateCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+    const speed = 200; // vitesse d'animation
+
+    counters.forEach(counter => {
+        const animate = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText.replace(/[^0-9.]/g, '');
+            const increment = target / speed;
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(animate, 1);
+            } else {
+                // Formater le nombre final
+                if (target >= 1000000) {
+                    counter.innerText = (target / 1000000).toFixed(1) + 'M';
+                } else if (target >= 1000) {
+                    counter.innerText = (target / 1000).toFixed(0) + 'K';
+                } else if (target % 1 !== 0) {
+                    counter.innerText = target.toFixed(1);
+                } else {
+                    counter.innerText = target;
+                }
+            }
+        };
+        animate();
+    });
+}
+
+// Détecter quand la section statistiques est visible
+const observerOptions = {
+    threshold: 0.5,
+    rootMargin: '0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            animateCounters();
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Observer la section statistiques
+const statsSection = document.getElementById('statistics');
+if (statsSection) {
+    observer.observe(statsSection);
+}
 
 // ==== SYSTÈME DE NOTIFICATION ====
 function montrerNotification(message, type = 'info') {

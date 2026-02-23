@@ -1,21 +1,21 @@
 /* ==== VARIABLES GLOBALES ==== */
-/* Palette inspirée de Solana : violet profond, turquoise, vert néon */
+/* Palette professionnelle : vert agricole, bleu confiance */
 :root {
     --bg-color: #0e0e1a;
     /* Fond très sombre avec nuance violette */
     --text-color: #f0f0f5;
     /* Blanc légèrement bleu */
-    --primary-color: #9945FF;
-    /* Violet Solana */
-    --primary-hover: #b066ff;
-    --accent-color: #14F195;
-    /* Turquoise/Vert néon Solana */
+    --primary-color: #2E7D32;
+    /* Vert foncé */
+    --primary-hover: #3E8E41;
+    --accent-color: #4CAF50;
+    /* Vert clair */
     --glass-bg: rgba(20, 15, 40, 0.65);
     /* Semi-transparent violet foncé */
-    --glass-border: rgba(153, 69, 255, 0.2);
-    /* Bordure violette subtile */
-    --gradient-sol: linear-gradient(135deg, #9945FF, #14F195);
-    /* Le fameux dégradé Solana */
+    --glass-border: rgba(46, 125, 50, 0.2);
+    /* Bordure verte subtile */
+    --gradient-main: linear-gradient(135deg, #2E7D32, #4CAF50);
+    /* Le fameux dégradé agricole */
 }
 
 /* ==== RESET GLOBAL ==== */
@@ -126,7 +126,7 @@ body {
     position: relative;
     padding: 0 5%;
     margin-top: 60px;
-    background-image: linear-gradient(rgba(14, 14, 26, 0.85), rgba(14, 14, 26, 0.6)), url('https://blog.rockx.com/wp-content/uploads/2022/11/solana-staking-img-1920x1024.jpg');
+    background-image: linear-gradient(rgba(14, 14, 26, 0.85), rgba(14, 14, 26, 0.6)), url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1920&h=1024&fit=crop');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -153,11 +153,11 @@ body {
 }
 
 .hero-content .highlight {
-    background: var(--gradient-sol);
+    background: var(--gradient-main);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    /* Texte avec le dégradé Solana */
+    /* Texte avec le dégradé principal */
 }
 
 .hero-content p {
@@ -282,7 +282,7 @@ body {
     width: 100%;
     /* Prend toute la largeur de la carte */
     padding: 0.8rem;
-    background: var(--gradient-sol);
+    background: var(--gradient-main);
     border: none;
     color: white;
     border-radius: 8px;
@@ -398,7 +398,7 @@ body {
 }
 
 .btn-primary {
-    background: var(--gradient-sol);
+    background: var(--gradient-main);
     color: white;
     border: none;
 }
@@ -503,7 +503,7 @@ body {
 
 #modal-project-title {
     font-size: 1.5rem;
-    background: var(--gradient-sol);
+    background: var(--gradient-main);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
