@@ -53,40 +53,42 @@
     <script type="module">
         import { connexion, getUser } from './auth.js';
 
-        // Si déjà connecté, rediriger
-        const user = await getUser();
-        if (user) {
-            const redirect = new URLSearchParams(window.location.search).get('redirect') || '/dashboard.html';
-            window.location.href = redirect;
-        }
-
-        const form = document.getElementById('login-form');
-        const msg = document.getElementById('auth-message');
-        const btn = document.getElementById('btn-login');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            btn.disabled = true;
-            btn.textContent = 'Connexion...';
-            msg.textContent = '';
-            msg.className = 'auth-message';
-
-            try {
-                await connexion(
-                    document.getElementById('email').value,
-                    document.getElementById('password').value
-                );
-                msg.textContent = '✅ Connexion réussie ! Redirection...';
-                msg.classList.add('success');
+        (async () => {
+            // Si déjà connecté, rediriger
+            const user = await getUser();
+            if (user) {
                 const redirect = new URLSearchParams(window.location.search).get('redirect') || '/dashboard.html';
-                setTimeout(() => window.location.href = redirect, 1000);
-            } catch (err) {
-                msg.textContent = '❌ ' + (err.message === 'Invalid login credentials' ? 'Email ou mot de passe incorrect.' : err.message);
-                msg.classList.add('error');
-                btn.disabled = false;
-                btn.textContent = 'Se Connecter';
+                window.location.href = redirect;
             }
-        });
+
+            const form = document.getElementById('login-form');
+            const msg = document.getElementById('auth-message');
+            const btn = document.getElementById('btn-login');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                btn.disabled = true;
+                btn.textContent = 'Connexion...';
+                msg.textContent = '';
+                msg.className = 'auth-message';
+
+                try {
+                    await connexion(
+                        document.getElementById('email').value,
+                        document.getElementById('password').value
+                    );
+                    msg.textContent = '✅ Connexion réussie ! Redirection...';
+                    msg.classList.add('success');
+                    const redirect = new URLSearchParams(window.location.search).get('redirect') || '/dashboard.html';
+                    setTimeout(() => window.location.href = redirect, 1000);
+                } catch (err) {
+                    msg.textContent = '❌ ' + (err.message === 'Invalid login credentials' ? 'Email ou mot de passe incorrect.' : err.message);
+                    msg.classList.add('error');
+                    btn.disabled = false;
+                    btn.textContent = 'Se Connecter';
+                }
+            });
+        })();
     </script>
 </body>
 </html>

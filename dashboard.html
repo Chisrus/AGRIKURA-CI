@@ -59,54 +59,56 @@
         import { requireAuth, getProfil, deconnexion } from './auth.js';
         import { supabase } from './db.js';
 
-        const user = await requireAuth();
-        if (!user) throw new Error('Non authentifié');
+        (async () => {
+            const user = await requireAuth();
+            if (!user) throw new Error('Non authentifié');
 
-        // Charger le profil
-        const profil = await getProfil(user.id);
-        const nom = profil?.nom_complet || user.email.split('@')[0];
+            // Charger le profil
+            const profil = await getProfil(user.id);
+            const nom = profil?.nom_complet || user.email.split('@')[0];
 
-        document.getElementById('user-name').textContent = nom;
-        document.getElementById('profile-name').textContent = nom;
-        document.getElementById('profile-email').textContent = user.email;
-        document.getElementById('profile-avatar').textContent = nom.charAt(0).toUpperCase();
-        document.getElementById('profile-tel').textContent = profil?.telephone || '—';
-        document.getElementById('profile-ville').textContent = profil?.ville || '—';
-        document.getElementById('profile-date').textContent = new Date(user.created_at).toLocaleDateString('fr-FR');
+            document.getElementById('user-name').textContent = nom;
+            document.getElementById('profile-name').textContent = nom;
+            document.getElementById('profile-email').textContent = user.email;
+            document.getElementById('profile-avatar').textContent = nom.charAt(0).toUpperCase();
+            document.getElementById('profile-tel').textContent = profil?.telephone || '—';
+            document.getElementById('profile-ville').textContent = profil?.ville || '—';
+            document.getElementById('profile-date').textContent = new Date(user.created_at).toLocaleDateString('fr-FR');
 
-        // Charger les investissements
-        const { data: investissements } = await supabase
-            .from('investissements')
-            .select('*, projets(titre)')
-            .eq('user_id', user.id)
-            .order('created_at', { ascending: false });
+            // Charger les investissements
+            const { data: investissements } = await supabase
+                .from('investissements')
+                .select('*, projets(titre)')
+                .eq('user_id', user.id)
+                .order('created_at', { ascending: false });
 
-        const listEl = document.getElementById('investment-list');
+            const listEl = document.getElementById('investment-list');
 
-        if (!investissements || investissements.length === 0) {
-            listEl.innerHTML = `
-                <div class="no-investments">
-                    <p>Vous n'avez pas encore d'investissement.</p>
-                    <p><a href="/marketplace.html">Explorer les projets →</a></p>
-                </div>`;
-        } else {
-            listEl.innerHTML = investissements.map(inv => `
-                <div class="investment-row">
-                    <div>
-                        <div class="inv-projet">${inv.projets?.titre || 'Projet'}</div>
-                        <div class="inv-date">${new Date(inv.created_at).toLocaleDateString('fr-FR')}</div>
+            if (!investissements || investissements.length === 0) {
+                listEl.innerHTML = `
+                    <div class="no-investments">
+                        <p>Vous n'avez pas encore d'investissement.</p>
+                        <p><a href="/marketplace.html">Explorer les projets →</a></p>
+                    </div>`;
+            } else {
+                listEl.innerHTML = investissements.map(inv => `
+                    <div class="investment-row">
+                        <div>
+                            <div class="inv-projet">${inv.projets?.titre || 'Projet'}</div>
+                            <div class="inv-date">${new Date(inv.created_at).toLocaleDateString('fr-FR')}</div>
+                        </div>
+                        <div class="inv-montant">${inv.montant.toLocaleString('fr-FR')} FCFA</div>
+                        <span class="inv-statut ${inv.statut}">${inv.statut === 'en_attente' ? '⏳ En attente' : '✅ Confirmé'}</span>
                     </div>
-                    <div class="inv-montant">${inv.montant.toLocaleString('fr-FR')} FCFA</div>
-                    <span class="inv-statut ${inv.statut}">${inv.statut === 'en_attente' ? '⏳ En attente' : '✅ Confirmé'}</span>
-                </div>
-            `).join('');
-        }
+                `).join('');
+            }
 
-        // Déconnexion
-        document.getElementById('btn-logout').addEventListener('click', async () => {
-            await deconnexion();
-            window.location.href = '/';
-        });
+            // Déconnexion
+            document.getElementById('btn-logout').addEventListener('click', async () => {
+                await deconnexion();
+                window.location.href = '/';
+            });
+        })();
     </script>
 </body>
 </html>

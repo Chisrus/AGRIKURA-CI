@@ -80,47 +80,49 @@
     <script type="module">
         import { inscription, getUser } from './auth.js';
 
-        const user = await getUser();
-        if (user) window.location.href = '/dashboard.html';
+        (async () => {
+            const user = await getUser();
+            if (user) window.location.href = '/dashboard.html';
 
-        const form = document.getElementById('register-form');
-        const msg = document.getElementById('auth-message');
-        const btn = document.getElementById('btn-register');
+            const form = document.getElementById('register-form');
+            const msg = document.getElementById('auth-message');
+            const btn = document.getElementById('btn-register');
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const password = document.getElementById('password').value;
-            const confirm = document.getElementById('password-confirm').value;
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const password = document.getElementById('password').value;
+                const confirm = document.getElementById('password-confirm').value;
 
-            if (password !== confirm) {
-                msg.textContent = '❌ Les mots de passe ne correspondent pas.';
-                msg.classList.add('error');
-                return;
-            }
+                if (password !== confirm) {
+                    msg.textContent = '❌ Les mots de passe ne correspondent pas.';
+                    msg.classList.add('error');
+                    return;
+                }
 
-            btn.disabled = true;
-            btn.textContent = 'Création...';
-            msg.textContent = '';
-            msg.className = 'auth-message';
+                btn.disabled = true;
+                btn.textContent = 'Création...';
+                msg.textContent = '';
+                msg.className = 'auth-message';
 
-            try {
-                await inscription(
-                    document.getElementById('email').value,
-                    password,
-                    document.getElementById('nom').value,
-                    document.getElementById('telephone').value,
-                    document.getElementById('ville').value
-                );
-                msg.innerHTML = '✅ Compte créé ! Vérifiez votre email pour confirmer votre inscription.';
-                msg.classList.add('success');
-                btn.textContent = 'Email envoyé ✉️';
-            } catch (err) {
-                msg.textContent = '❌ ' + err.message;
-                msg.classList.add('error');
-                btn.disabled = false;
-                btn.textContent = 'Créer mon Compte';
-            }
-        });
+                try {
+                    await inscription(
+                        document.getElementById('email').value,
+                        password,
+                        document.getElementById('nom').value,
+                        document.getElementById('telephone').value,
+                        document.getElementById('ville').value
+                    );
+                    msg.innerHTML = '✅ Compte créé ! Vérifiez votre email pour confirmer votre inscription.';
+                    msg.classList.add('success');
+                    btn.textContent = 'Email envoyé ✉️';
+                } catch (err) {
+                    msg.textContent = '❌ ' + err.message;
+                    msg.classList.add('error');
+                    btn.disabled = false;
+                    btn.textContent = 'Créer mon Compte';
+                }
+            });
+        })();
     </script>
 </body>
 </html>
