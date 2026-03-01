@@ -94,12 +94,12 @@ const translations = {
         'funding': 'Funding',
         
         // Statistics
-        'our_impact': 'Our <span class="highlight">Impact</span>',
-        'impact_subtitle': 'Numbers that speak for themselves',
-        'hectares_cultivated': 'Hectares Cultivated',
-        'farmers_supported': 'Farmers Supported',
-        'fcfa_invested': 'FCFA Invested',
-        'avg_return': 'Avg. Return %',
+        'our_impact': 'Our Impact Goals',
+        'impact_subtitle': 'Our ambitions for the coming years',
+        'hectares_cultivated': 'Hectares Cultivated (Goal)',
+        'farmers_supported': 'Farmers Supported (Goal)',
+        'fcfa_invested': 'FCFA Invested (Goal)',
+        'avg_return': '% Average Return (Target)',
         
         // Team
         'our_team': 'Our <span class="highlight">Team</span>',
