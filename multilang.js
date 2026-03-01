@@ -191,7 +191,6 @@ function updateSectionHeaders(lang) {
         '#statistics .section-header p': translations[lang].impact_subtitle,
         '#team h2': translations[lang].our_team,
         '#team .section-header p': translations[lang].team_subtitle,
-        '#team h3': translations[lang].our_partners,
         '#testimonials h2': translations[lang].they_trust_us,
         '#testimonials .section-header p': translations[lang].testimonials_subtitle,
         '#risk-guarantees h2': translations[lang].transparency_security,
