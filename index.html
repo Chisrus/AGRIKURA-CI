@@ -17,7 +17,12 @@
     <!-- Barre de navigation -->
     <nav class="navbar">
         <div class="logo">Agrikura<span class="dot">.</span></div>
-        <ul class="nav-links">
+        <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        <ul class="nav-links" id="nav-links">
             <li><a href="#concept" data-fr="Le Concept" data-en="How it Works">Le Concept</a></li>
             <li><a href="#marketplace" data-fr="Marketplace" data-en="Marketplace">Marketplace</a></li>
             <li><a href="#statistics" data-fr="Impact" data-en="Impact">Impact</a></li>
@@ -52,6 +57,7 @@
     <!-- Section Le Concept -->
     <section id="concept" class="concept-section">
         <div class="section-header">
+            <span class="section-tag">🔧 Processus</span>
             <h2>Comment ça <span class="highlight">Marche ?</span></h2>
             <p>Un processus simple et transparent garanti par notre technologie.</p>
         </div>
@@ -77,6 +83,7 @@
     <!-- Section Marketplace -->
     <section id="marketplace" class="marketplace">
         <div class="section-header">
+            <span class="section-tag">🌿 Investir</span>
             <h2>Projets <span class="highlight">Disponibles</span></h2>
             <p>Découvrez les exploitations agricoles qui n'attendent que votre soutien.</p>
         </div>
@@ -171,6 +178,7 @@
     <!-- Section Statistiques et Impact -->
     <section id="statistics" class="statistics-section">
         <div class="section-header">
+            <span class="section-tag">📈 Chiffres</span>
             <h2>Notre <span class="highlight">Impact</span></h2>
             <p>Des chiffres qui parlent d'eux-mêmes</p>
         </div>
@@ -220,6 +228,7 @@
     <!-- Section Équipe et Partenaires -->
     <section id="team" class="team-section">
         <div class="section-header">
+            <span class="section-tag">👥 L'Équipe</span>
             <h2>Notre <span class="highlight">Équipe</span></h2>
             <p>Des experts passionnés au service de l'agriculture</p>
         </div>
@@ -286,18 +295,18 @@
                 </div>
             </div>
             
-            <div class="certifications-showcase">
+        <div class="certifications-showcase">
                 <h4>Nos <span class="highlight">Certifications</span></h4>
                 <div class="cert-grid">
                     <div class="cert-item">
-                        <div class="cert-icon">�</div>
+                        <div class="cert-icon">🏅</div>
                         <div class="cert-info">
                             <h5>ISO 14001</h5>
                             <p>Management environnemental</p>
                         </div>
                     </div>
                     <div class="cert-item">
-                        <div class="cert-icon">�</div>
+                        <div class="cert-icon">🌿</div>
                         <div class="cert-info">
                             <h5>Agriculture Biologique</h5>
                             <p>Certification AB et Ecocert</p>
@@ -322,9 +331,68 @@
         </div>
     </section>
 
+    <!-- Section Risques & Garanties -->
+    <section id="risk-guarantees" class="risk-section">
+        <div class="section-header">
+            <span class="section-tag">🛡️ Sécurité</span>
+            <h2>Transparence et <span class="highlight">Sécurité</span></h2>
+            <p>Tout ce que vous devez savoir sur votre investissement</p>
+        </div>
+        
+        <div class="risk-grid">
+            <div class="risk-card guarantee-card">
+                <div class="risk-icon">✅</div>
+                <h3>Nos Garanties</h3>
+                <ul class="risk-list">
+                    <li>Assurance agricole sur chaque projet</li>
+                    <li>Suivi en temps réel par capteurs IoT</li>
+                    <li>Audits agronomiques trimestriels</li>
+                    <li>Fond de garantie pour les investisseurs</li>
+                    <li>Contrats transparents et vérifiables</li>
+                </ul>
+            </div>
+            <div class="risk-card warning-card">
+                <div class="risk-icon">⚠️</div>
+                <h3>Risques Potentiels</h3>
+                <ul class="risk-list risk-list-warning">
+                    <li>Conditions météorologiques extrêmes</li>
+                    <li>Fluctuations des prix de marché</li>
+                    <li>Risque de maladies des cultures</li>
+                    <li>Délais possibles sur les récoltes</li>
+                </ul>
+            </div>
+            <div class="risk-card perf-card">
+                <div class="risk-icon">📊</div>
+                <h3>Performance Historique</h3>
+                <div class="performance-stats">
+                    <div class="perf-item">
+                        <span class="perf-label">Taux de réussite</span>
+                        <span class="perf-value">94%</span>
+                    </div>
+                    <div class="perf-item">
+                        <span class="perf-label">Rendement moyen</span>
+                        <span class="perf-value">13.5%</span>
+                    </div>
+                    <div class="perf-item">
+                        <span class="perf-label">Projets livrés</span>
+                        <span class="perf-value">127</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="disclaimer-box">
+            <h4>📋 Informations Importantes</h4>
+            <p>Les investissements agricoles comportent des risques. Les performances passées ne garantissent pas les résultats futurs. 
+            Nous vous recommandons de diversifier vos investissements et de ne pas investir plus que ce que vous pouvez vous permettre de perdre.
+            Consultez nos <a href="#faq" style="color: var(--accent-color);">FAQ</a> pour plus de détails.</p>
+        </div>
+    </section>
+
     <!-- Section Témoignages -->
     <section id="testimonials" class="testimonials-section">
         <div class="section-header">
+            <span class="section-tag">💬 Avis</span>
             <h2>Ils Nous <span class="highlight">Font Confiance</span></h2>
             <p>Retours d'expérience de nos partenaires</p>
         </div>
@@ -361,15 +429,10 @@
                     <div class="author-avatar" style="background: #FF9800;">J</div>
                     <div>
                         <h4>Jean-Marc Kouassi</h4>
+                        <p>Analyste Financier</p>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="disclaimer-box">
-            <h4>📋 Informations Importantes</h4>
-            <p>Les investissements agricoles comportent des risques. Pass performance ne garantit pas les résultats futurs. 
-            Nous vous recommandons de diversifier vos investissements et de ne pas investir plus que ce que vous pouvez vous permettre de perdre.</p>
         </div>
     </section>
 
