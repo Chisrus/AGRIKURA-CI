@@ -378,6 +378,44 @@
         <div class="section-header">
             <h2>Questions <span class="highlight">Fréquentes</span></h2>
             <p>Tout ce que vous devez savoir sur Agrikura</p>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-category">
+                <h3>💰 Investissement</h3>
+                <div class="faq-item">
+                    <button class="faq-question">Quel est le montant minimum d'investissement ? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Le montant minimum est de 5 000 FCFA. Vous pouvez investir autant que vous le souhaitez au-delà de ce seuil.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Comment sont calculés les rendements ? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Les rendements sont estimés sur la base des données historiques de chaque culture, de la localisation et des conditions climatiques mesurées par nos capteurs IoT.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Quand est-ce que je reçois mes gains ? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Les gains sont distribués à la fin du cycle de récolte, généralement entre 6 et 12 mois selon la culture.</p></div>
+                </div>
+            </div>
+            <div class="faq-category">
+                <h3>🔒 Sécurité</h3>
+                <div class="faq-item">
+                    <button class="faq-question">Mon investissement est-il sécurisé ? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Oui, chaque projet est couvert par une assurance agricole et nos capteurs IoT permettent un suivi en temps réel pour anticiper les risques.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Quels modes de paiement acceptez-vous ? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Nous acceptons Wave, Orange Money, MTN MoMo et Moov Money pour faciliter les transactions en Côte d'Ivoire.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modale d'investissement -->
+    <div class="modal-overlay" id="invest-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2 id="modal-project-title">Investir dans ce projet</h2>
+            <p class="modal-subtitle">Choisissez votre mode de paiement et le montant</p>
 
             <div class="payment-methods">
                 <label class="payment-option">
@@ -412,12 +450,38 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">Agrikura<span class="dot">.</span></div>
+                <p>La plateforme d'investissement agricole connectée en Côte d'Ivoire.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <a href="#concept">Le Concept</a>
+                <a href="#marketplace">Marketplace</a>
+                <a href="#statistics">Impact</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <a href="mailto:contact@agrikura.ci">contact@agrikura.ci</a>
+                <a href="tel:+2250700000000">+225 07 00 00 00 00</a>
+                <p>Abidjan, Côte d'Ivoire</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Agrikura. Tous droits réservés.</p>
+        </div>
+    </footer>
+
     <!-- Conteneur pour nos notifications stylées -->
     <div id="notification-container" class="notification-container"></div>
 
-    <!-- On lie notre fichier JavaScript ici, juste avant la fin du body pour que le HTML charge en premier -->
+    <!-- Scripts -->
     <script src="multilang.js"></script>
-    <script src="app.js"></script>
+    <script type="module" src="app.js"></script>
 </body>
 
 </html>
