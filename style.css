@@ -90,6 +90,22 @@ body {
     font-size: 1.8rem;
     font-weight: 800;
     letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.logo-img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    display: block;
+}
+
+.logo-text {
+    line-height: 1;
 }
 
 .logo .dot {
