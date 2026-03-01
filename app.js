@@ -322,6 +322,28 @@ if (statsSection) {
     observer.observe(statsSection);
 }
 
+// ==== FONCTIONNALITÉ FAQ ====
+document.addEventListener('DOMContentLoaded', function() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            const faqItem = this.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Fermer toutes les autres réponses
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Ouvrir/fermer la réponse actuelle
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        });
+    });
+});
+
 // ==== SYSTÈME DE NOTIFICATION ====
 function montrerNotification(message, type = 'info') {
     const container = document.getElementById('notification-container');

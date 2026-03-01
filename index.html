@@ -18,11 +18,19 @@
     <nav class="navbar">
         <div class="logo">Agrikura<span class="dot">.</span></div>
         <ul class="nav-links">
-            <li><a href="#concept">Le Concept</a></li>
-            <li><a href="#marketplace">Marketplace</a></li>
-            <li><a href="#statistics">Impact</a></li>
-            <li><a href="#team">Équipe</a></li>
-            <li><a href="#" class="btn-connect">Espace Investisseur</a></li>
+            <li><a href="#concept" data-fr="Le Concept" data-en="How it Works">Le Concept</a></li>
+            <li><a href="#marketplace" data-fr="Marketplace" data-en="Marketplace">Marketplace</a></li>
+            <li><a href="#statistics" data-fr="Impact" data-en="Impact">Impact</a></li>
+            <li><a href="#team" data-fr="Équipe" data-en="Team">Équipe</a></li>
+            <li><a href="#risk-guarantees" data-fr="Sécurité" data-en="Security">Sécurité</a></li>
+            <li><a href="#faq" data-fr="FAQ" data-en="FAQ">FAQ</a></li>
+            <li><a href="#" class="btn-connect" data-fr="Espace Investisseur" data-en="Investor Space">Espace Investisseur</a></li>
+            <li class="language-selector">
+                <select id="language-select" class="lang-select">
+                    <option value="fr">🇫🇷 FR</option>
+                    <option value="en">🇬🇧 EN</option>
+                </select>
+            </li>
         </ul>
     </nav>
 
@@ -234,20 +242,82 @@
             <div class="team-member">
                 <div class="member-photo" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
                 <h3>Mohamed Diallo</h3>
-                <p class="member-role">Directeur Financier</p>
-                <p class="member-desc">Expert en finance agricole et impact investing</p>
             </div>
         </div>
         
         <div class="partners-section">
             <h3>Nos <span class="highlight">Partenaires</span></h3>
             <div class="partners-grid">
-                <div class="partner-logo">🏛️</div>
-                <div class="partner-logo">🌾</div>
-                <div class="partner-logo">🔬</div>
-                <div class="partner-logo">🏦</div>
-                <div class="partner-logo">🌍</div>
-                <div class="partner-logo">📱</div>
+                <div class="partner-card">
+                    <div class="partner-logo">🏛️</div>
+                    <h4>Gouvernement</h4>
+                    <p>Ministère de l'Agriculture ivoirien</p>
+                    <div class="certification-badge">Officiel</div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo">🌾</div>
+                    <h4>UNICEF</h4>
+                    <p>Programme de sécurité alimentaire</p>
+                    <div class="certification-badge">ONU</div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo">🔬</div>
+                    <h4>INRA</h4>
+                    <p>Institut National de Recherche Agronomique</p>
+                    <div class="certification-badge">Recherche</div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo">🏦</div>
+                    <h4>BOA</h4>
+                    <p>Banque pour l'Agriculture et l'Environnement</p>
+                    <div class="certification-badge">Financement</div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo">🌍</div>
+                    <h4>FAO</h4>
+                    <p>Organisation des Nations Unies pour l'Alimentation</p>
+                    <div class="certification-badge">International</div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-logo">📱</div>
+                    <h4>MTN CI</h4>
+                    <p>Solutions mobiles pour l'agriculture</p>
+                    <div class="certification-badge">Technologie</div>
+                </div>
+            </div>
+            
+            <div class="certifications-showcase">
+                <h4>Nos <span class="highlight">Certifications</span></h4>
+                <div class="cert-grid">
+                    <div class="cert-item">
+                        <div class="cert-icon">�</div>
+                        <div class="cert-info">
+                            <h5>ISO 14001</h5>
+                            <p>Management environnemental</p>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon">�</div>
+                        <div class="cert-info">
+                            <h5>Agriculture Biologique</h5>
+                            <p>Certification AB et Ecocert</p>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon">🤝</div>
+                        <div class="cert-info">
+                            <h5>Fair Trade</h5>
+                            <p>Commerce équitable certifié</p>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon">🔒</div>
+                        <div class="cert-info">
+                            <h5>GDPR Compliant</h5>
+                            <p>Protection des données européennes</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -291,19 +361,23 @@
                     <div class="author-avatar" style="background: #FF9800;">J</div>
                     <div>
                         <h4>Jean-Marc Kouassi</h4>
-                        <p>Agriculteur-Partner</p>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <div class="disclaimer-box">
+            <h4>📋 Informations Importantes</h4>
+            <p>Les investissements agricoles comportent des risques. Pass performance ne garantit pas les résultats futurs. 
+            Nous vous recommandons de diversifier vos investissements et de ne pas investir plus que ce que vous pouvez vous permettre de perdre.</p>
+        </div>
     </section>
 
-    <!-- Modal Investissement (Cachée par défaut) -->
-    <div id="invest-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="close-modal">&times;</button>
-            <h2 id="modal-project-title">Titre du Projet</h2>
-            <p class="modal-subtitle">Choisissez votre méthode d'investissement</p>
+    <!-- Section FAQ -->
+    <section id="faq" class="faq-section">
+        <div class="section-header">
+            <h2>Questions <span class="highlight">Fréquentes</span></h2>
+            <p>Tout ce que vous devez savoir sur Agrikura</p>
 
             <div class="payment-methods">
                 <label class="payment-option">
@@ -342,6 +416,7 @@
     <div id="notification-container" class="notification-container"></div>
 
     <!-- On lie notre fichier JavaScript ici, juste avant la fin du body pour que le HTML charge en premier -->
+    <script src="multilang.js"></script>
     <script src="app.js"></script>
 </body>
 
