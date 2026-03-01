@@ -14,143 +14,119 @@ export type Database = {
   }
   public: {
     Tables: {
-      agricultural_projects: {
+      conditions_ideales: {
         Row: {
-          created_at: string
-          created_by: string | null
-          crop_type: string
-          current_funding: number
-          description: string | null
-          estimated_yield: number
-          humidity: number | null
+          culture: string
+          humidite_max: number
+          humidite_min: number
           id: string
-          image_url: string | null
-          location: string | null
-          status: string
-          target_funding: number
-          temperature: number | null
-          title: string
-          updated_at: string
+          temp_max: number
+          temp_min: number
         }
         Insert: {
-          created_at?: string
-          created_by?: string | null
-          crop_type: string
-          current_funding?: number
-          description?: string | null
-          estimated_yield?: number
-          humidity?: number | null
+          culture: string
+          humidite_max: number
+          humidite_min: number
           id?: string
-          image_url?: string | null
-          location?: string | null
-          status?: string
-          target_funding?: number
-          temperature?: number | null
-          title: string
-          updated_at?: string
+          temp_max: number
+          temp_min: number
         }
         Update: {
-          created_at?: string
-          created_by?: string | null
-          crop_type?: string
-          current_funding?: number
-          description?: string | null
-          estimated_yield?: number
-          humidity?: number | null
+          culture?: string
+          humidite_max?: number
+          humidite_min?: number
           id?: string
-          image_url?: string | null
-          location?: string | null
-          status?: string
-          target_funding?: number
-          temperature?: number | null
-          title?: string
-          updated_at?: string
+          temp_max?: number
+          temp_min?: number
         }
         Relationships: []
       }
-      investments: {
+      investissements: {
         Row: {
-          amount: number
           created_at: string
           id: string
-          payment_method: string
-          payment_status: string
-          project_id: string
-          user_id: string
+          methode_paiement: string
+          montant: number
+          projet_id: string
+          statut: string
         }
         Insert: {
-          amount: number
           created_at?: string
           id?: string
-          payment_method: string
-          payment_status?: string
-          project_id: string
-          user_id: string
+          methode_paiement: string
+          montant: number
+          projet_id: string
+          statut?: string
         }
         Update: {
-          amount?: number
           created_at?: string
           id?: string
-          payment_method?: string
-          payment_status?: string
-          project_id?: string
-          user_id?: string
+          methode_paiement?: string
+          montant?: number
+          projet_id?: string
+          statut?: string
         }
         Relationships: [
           {
-            foreignKeyName: "investments_project_id_fkey"
-            columns: ["project_id"]
+            foreignKeyName: "investissements_projet_id_fkey"
+            columns: ["projet_id"]
             isOneToOne: false
-            referencedRelation: "agricultural_projects"
+            referencedRelation: "projets"
             referencedColumns: ["id"]
           },
         ]
       }
-      profiles: {
+      projets: {
         Row: {
-          avatar_url: string | null
+          couleur_tag: string | null
           created_at: string
-          full_name: string | null
+          culture: string
+          description: string | null
+          financement_actuel: number
+          humidite: number
           id: string
-          phone: string | null
+          image_url: string | null
+          localisation: string
+          montant_besoin: number
+          rendement_estime: number
+          statut: string
+          temperature: number
+          titre: string
           updated_at: string
-          user_id: string
         }
         Insert: {
-          avatar_url?: string | null
+          couleur_tag?: string | null
           created_at?: string
-          full_name?: string | null
+          culture: string
+          description?: string | null
+          financement_actuel?: number
+          humidite?: number
           id?: string
-          phone?: string | null
+          image_url?: string | null
+          localisation: string
+          montant_besoin?: number
+          rendement_estime?: number
+          statut?: string
+          temperature?: number
+          titre: string
           updated_at?: string
-          user_id: string
         }
         Update: {
-          avatar_url?: string | null
+          couleur_tag?: string | null
           created_at?: string
-          full_name?: string | null
+          culture?: string
+          description?: string | null
+          financement_actuel?: number
+          humidite?: number
           id?: string
-          phone?: string | null
+          image_url?: string | null
+          localisation?: string
+          montant_besoin?: number
+          rendement_estime?: number
+          statut?: string
+          temperature?: number
+          titre?: string
           updated_at?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
-      user_roles: {
-        Row: {
-          id: string
-          role: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
-        Insert: {
-          id?: string
-          role: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
-        Update: {
-          id?: string
-          role?: Database["public"]["Enums"]["app_role"]
-          user_id?: string
         }
         Relationships: []
       }
@@ -159,16 +135,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      has_role: {
-        Args: {
-          _role: Database["public"]["Enums"]["app_role"]
-          _user_id: string
-        }
-        Returns: boolean
-      }
+      [_ in never]: never
     }
     Enums: {
-      app_role: "admin" | "investor" | "farmer"
+      [_ in never]: never
     }
     CompositeTypes: {
       [_ in never]: never
@@ -295,8 +265,6 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {
-      app_role: ["admin", "investor", "farmer"],
-    },
+    Enums: {},
   },
 } as const
