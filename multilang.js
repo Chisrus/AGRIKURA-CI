@@ -124,7 +124,7 @@ const translations = {
     }
 };
 
-let currentLang = 'fr';
+let currentLang = 'en';
 
 function switchLanguage(lang) {
     currentLang = lang;
@@ -147,6 +147,12 @@ function switchLanguage(lang) {
     
     // Update section headers
     updateSectionHeaders(lang);
+
+    // Update concept steps
+    updateConceptSteps(lang);
+
+    // Update CTA
+    updateCta(lang);
     
     // Update investment buttons
     document.querySelectorAll('.btn-invest').forEach(btn => {
@@ -204,6 +210,43 @@ function updateSectionHeaders(lang) {
     });
 }
 
+function updateConceptSteps(lang) {
+    const step1Title = document.querySelector('#concept .concept-steps .step:nth-child(1) h3');
+    const step1Desc = document.querySelector('#concept .concept-steps .step:nth-child(1) p');
+    const step2Title = document.querySelector('#concept .concept-steps .step:nth-child(2) h3');
+    const step2Desc = document.querySelector('#concept .concept-steps .step:nth-child(2) p');
+    const step3Title = document.querySelector('#concept .concept-steps .step:nth-child(3) h3');
+    const step3Desc = document.querySelector('#concept .concept-steps .step:nth-child(3) p');
+
+    if (step1Title) step1Title.textContent = translations[lang].step1_title;
+    if (step1Desc) step1Desc.textContent = translations[lang].step1_desc;
+    if (step2Title) step2Title.textContent = translations[lang].step2_title;
+    if (step2Desc) step2Desc.textContent = translations[lang].step2_desc;
+    if (step3Title) step3Title.textContent = translations[lang].step3_title;
+    if (step3Desc) step3Desc.textContent = translations[lang].step3_desc;
+}
+
+function updateCta(lang) {
+    const ctaTitle = document.querySelector('.cta-section h2');
+    const ctaSubtitle = document.querySelector('.cta-section p');
+    const ctaButtons = document.querySelectorAll('.cta-section .hero-buttons a');
+
+    if (ctaTitle) {
+        ctaTitle.innerHTML = lang === 'en'
+            ? 'Ready to <span class="highlight">Invest</span> ?'
+            : 'Prêt à <span class="highlight">Investir</span> ?';
+    }
+
+    if (ctaSubtitle) {
+        ctaSubtitle.textContent = lang === 'en'
+            ? 'Join 340+ farmers and hundreds of investors on Agrikura.'
+            : "Rejoignez plus de 340 agriculteurs et des centaines d'investisseurs sur Agrikura.";
+    }
+
+    if (ctaButtons[0]) ctaButtons[0].textContent = lang === 'en' ? 'Create a Free Account' : 'Créer un Compte Gratuit';
+    if (ctaButtons[1]) ctaButtons[1].textContent = lang === 'en' ? 'View Projects' : 'Voir les Projets';
+}
+
 function updateStatLabels(lang) {
     const statLabels = {
         'Hectares Cultivés': translations[lang].hectares_cultivated,
@@ -225,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const languageSelect = document.getElementById('language-select');
     if (languageSelect) {
         // Load saved preference
-        const savedLang = localStorage.getItem('preferredLanguage') || 'fr';
+        const savedLang = localStorage.getItem('preferredLanguage') || 'en';
         languageSelect.value = savedLang;
         switchLanguage(savedLang);
         
