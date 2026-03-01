@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Agrikura</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="logo">Agrikura<span class="dot">.</span></a>
+        <ul class="nav-links">
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/marketplace.html">Marketplace</a></li>
+            <li><a href="/dashboard.html" style="color: var(--accent-color);">Mon Espace</a></li>
+        </ul>
+    </nav>
+
+    <main class="dashboard-page">
+        <div class="dashboard-header">
+            <h1>Bienvenue, <span class="highlight" id="user-name">...</span></h1>
+            <button class="btn-logout" id="btn-logout">Déconnexion</button>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="profile-card">
+                <div class="profile-avatar" id="profile-avatar">?</div>
+                <h3 id="profile-name">Chargement...</h3>
+                <p class="profile-email" id="profile-email"></p>
+                <div class="profile-info">
+                    <div class="profile-info-item">
+                        <span>📞 Téléphone</span>
+                        <span id="profile-tel">—</span>
+                    </div>
+                    <div class="profile-info-item">
+                        <span>📍 Ville</span>
+                        <span id="profile-ville">—</span>
+                    </div>
+                    <div class="profile-info-item">
+                        <span>📅 Membre depuis</span>
+                        <span id="profile-date">—</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="investments-panel">
+                <h2>Mes <span class="highlight">Investissements</span></h2>
+                <div class="investment-list" id="investment-list">
+                    <div class="loading-spinner"><div class="spinner"></div><p>Chargement...</p></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import { requireAuth, getProfil, deconnexion } from './auth.js';
+        import { supabase } from './db.js';
+
+        const user = await requireAuth();
+        if (!user) throw new Error('Non authentifié');
+
+        // Charger le profil
+        const profil = await getProfil(user.id);
+        const nom = profil?.nom_complet || user.email.split('@')[0];
+
+        document.getElementById('user-name').textContent = nom;
+        document.getElementById('profile-name').textContent = nom;
+        document.getElementById('profile-email').textContent = user.email;
+        document.getElementById('profile-avatar').textContent = nom.charAt(0).toUpperCase();
+        document.getElementById('profile-tel').textContent = profil?.telephone || '—';
+        document.getElementById('profile-ville').textContent = profil?.ville || '—';
+        document.getElementById('profile-date').textContent = new Date(user.created_at).toLocaleDateString('fr-FR');
+
+        // Charger les investissements
+        const { data: investissements } = await supabase
+            .from('investissements')
+            .select('*, projets(titre)')
+            .eq('user_id', user.id)
+            .order('created_at', { ascending: false });
+
+        const listEl = document.getElementById('investment-list');
+
+        if (!investissements || investissements.length === 0) {
+            listEl.innerHTML = `
+                <div class="no-investments">
+                    <p>Vous n'avez pas encore d'investissement.</p>
+                    <p><a href="/marketplace.html">Explorer les projets →</a></p>
+                </div>`;
+        } else {
+            listEl.innerHTML = investissements.map(inv => `
+                <div class="investment-row">
+                    <div>
+                        <div class="inv-projet">${inv.projets?.titre || 'Projet'}</div>
+                        <div class="inv-date">${new Date(inv.created_at).toLocaleDateString('fr-FR')}</div>
+                    </div>
+                    <div class="inv-montant">${inv.montant.toLocaleString('fr-FR')} FCFA</div>
+                    <span class="inv-statut ${inv.statut}">${inv.statut === 'en_attente' ? '⏳ En attente' : '✅ Confirmé'}</span>
+                </div>
+            `).join('');
+        }
+
+        // Déconnexion
+        document.getElementById('btn-logout').addEventListener('click', async () => {
+            await deconnexion();
+            window.location.href = '/';
+        });
+    </script>
+</body>
+</html>
