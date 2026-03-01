@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion | Agrikura</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="logo">Agrikura<span class="dot">.</span></a>
+        <ul class="nav-links">
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/marketplace.html">Marketplace</a></li>
+            <li><a href="/register.html" class="btn-connect">Créer un Compte</a></li>
+        </ul>
+    </nav>
+
+    <main class="auth-page">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Connexion</h1>
+                <p>Accédez à votre espace investisseur</p>
+            </div>
+
+            <form id="login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="votre@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" placeholder="••••••••" required minlength="6">
+                </div>
+
+                <button type="submit" class="btn-primary auth-btn" id="btn-login">
+                    Se Connecter
+                </button>
+
+                <div id="auth-message" class="auth-message"></div>
+            </form>
+
+            <div class="auth-footer">
+                <p>Pas encore de compte ? <a href="/register.html">Créer un compte</a></p>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import { connexion, getUser } from './auth.js';
+
+        // Si déjà connecté, rediriger
+        const user = await getUser();
+        if (user) {
+            const redirect = new URLSearchParams(window.location.search).get('redirect') || '/dashboard.html';
+            window.location.href = redirect;
+        }
+
+        const form = document.getElementById('login-form');
+        const msg = document.getElementById('auth-message');
+        const btn = document.getElementById('btn-login');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            btn.disabled = true;
+            btn.textContent = 'Connexion...';
+            msg.textContent = '';
+            msg.className = 'auth-message';
+
+            try {
+                await connexion(
+                    document.getElementById('email').value,
+                    document.getElementById('password').value
+                );
+                msg.textContent = '✅ Connexion réussie ! Redirection...';
+                msg.classList.add('success');
+                const redirect = new URLSearchParams(window.location.search).get('redirect') || '/dashboard.html';
+                setTimeout(() => window.location.href = redirect, 1000);
+            } catch (err) {
+                msg.textContent = '❌ ' + (err.message === 'Invalid login credentials' ? 'Email ou mot de passe incorrect.' : err.message);
+                msg.classList.add('error');
+                btn.disabled = false;
+                btn.textContent = 'Se Connecter';
+            }
+        });
+    </script>
+</body>
+</html>
