@@ -120,7 +120,21 @@ const translations = {
         'avg_performance': 'Average Return',
         'delivered_projects': 'Delivered Projects',
         'important_info': 'Important Information',
-        'disclaimer': 'Agricultural investments involve risks. Past performance does not guarantee future results. We recommend diversifying your investments and not investing more than you can afford to lose.'
+        'disclaimer': 'Agricultural investments involve risks. Past performance does not guarantee future results. We recommend diversifying your investments and not investing more than you can afford to lose.',
+
+        // Insurance
+        'insure_your_field': 'Insure your <span class="highlight">Field</span>',
+        'insurance_subtitle': 'Protect your agricultural investments against climatic risks and other hazards',
+        'climatic_risks': 'Climatic Risks',
+        'climatic_risks_desc': 'Coverage against extreme weather conditions such as droughts, floods and other meteorological phenomena that can affect your crops.',
+        'diseases_pests': 'Diseases & Pests',
+        'diseases_pests_desc': 'Protection against epidemics of plant diseases and pest infestations that threaten your crops.',
+        'price_fluctuations': 'Price Fluctuations',
+        'price_fluctuations_desc': 'Guarantee against sudden drops in market prices that can reduce your income.',
+        'get_custom_quote': 'Get a Custom Quote',
+        'quote_desc': 'Contact our team for coverage adapted to your agricultural needs.',
+        'request_quote': 'Request a Quote'
+    }
     }
 };
 
@@ -194,7 +208,9 @@ function updateSectionHeaders(lang) {
         '#testimonials h2': translations[lang].they_trust_us,
         '#testimonials .section-header p': translations[lang].testimonials_subtitle,
         '#risk-guarantees h2': translations[lang].transparency_security,
-        '#risk-guarantees .section-header p': translations[lang].risk_subtitle
+        '#risk-guarantees .section-header p': translations[lang].risk_subtitle,
+        '#insurance h2': translations[lang].insure_your_field,
+        '#insurance .section-header p': translations[lang].insurance_subtitle
     };
     
     Object.entries(headers).forEach(([selector, text]) => {
